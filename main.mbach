@@ -1,0 +1,94 @@
+eset Player = {player1, player2, player3, player4, player5, player6, player7, player8, player1_2, player2_2, player3_2}.
+     Tokens = {tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8, tp1_2, tp2_2, tp3_2}.
+
+eqn x_coord(player1) = 115.      y_coord(player1) = 316.
+    x_coord(player2) = 345.      y_coord(player2) = 78.
+    x_coord(player3) = 590.      y_coord(player3) = 78.
+    x_coord(player4) = 838.      y_coord(player4) = 78.
+    x_coord(player5) = 1067.     y_coord(player5) = 316.
+    x_coord(player6) = 838.      y_coord(player6) = 556.
+    x_coord(player7) = 590.      y_coord(player7) = 556.
+    x_coord(player8) = 345.      y_coord(player8) = 556.
+    x_coord(player8) = 345.      y_coord(player8) = 556.
+
+    x_coord(player1_2) = 115.    y_coord(player1_2) = 316.
+    x_coord(player2_2) = 345.    y_coord(player2_2) = 78.
+    x_coord(player3_2) = 590.    y_coord(player3_2) = 78.
+
+
+    x_coord_explosion(player1) = 55.      y_coord_explosion(player1) = 290.
+    x_coord_explosion(player2) = 290.     y_coord_explosion(player2) = 45.
+    x_coord_explosion(player3) = 536.     y_coord_explosion(player3) = 45.
+    x_coord_explosion(player4) = 787.     y_coord_explosion(player4) = 45.
+    x_coord_explosion(player5) = 1018.    y_coord_explosion(player5) = 290.
+    x_coord_explosion(player6) = 787.     y_coord_explosion(player6) = 534.
+    x_coord_explosion(player7) = 536.     y_coord_explosion(player7) = 534.
+    x_coord_explosion(player8) = 295.     y_coord_explosion(player8) = 534.
+
+    x_coord_explosion(player1_2) = 55.    y_coord_explosion(player1_2) = 290.
+    x_coord_explosion(player2_2) = 290.   y_coord_explosion(player2_2) = 45.
+    x_coord_explosion(player3_2) = 536.   y_coord_explosion(player3_2) = 45.
+
+    token(player1) = tp1.         token(player2) = tp2.
+    token(player3) = tp3.         token(player4) = tp4.
+    token(player5) = tp5.         token(player6) = tp6.
+    token(player7) = tp7.         token(player8) = tp8.
+
+    token(player1_2) = tp1_2.     token(player2_2) = tp2_2.
+    token(player3_2) = tp3_2.
+    
+    next(player1) = player2.
+    next(player2) = player3.
+    next(player3) = player4.
+    next(player4) = player5.
+    next(player5) = player6.
+    next(player6) = player7.
+    next(player7) = player8.
+    next(player8) = player1_2.
+    next(player1_2) = player2_2.
+    next(player2_2) = player3_2.
+
+
+scene anecdotfunScene = {
+    size = (1200,700).
+    layers = {top}.
+
+    background = loadImage(images/background.png).
+    stickImage =  loadImage(images/stick.png).
+    explosionImage =  loadImage(images/explosion.png).
+
+    widget stick = {
+       display = {stickImage}
+       init = {wdL = top.}
+    }
+
+    widget explosion = {
+       display = {explosionImage}
+       init = {wdL = top.}
+    }
+}.
+
+proc Stick(player:Player) = 
+        get(token(next(player)));
+        move_to(stick, anecdotfunScene, x_coord(next(player)), y_coord(next(player)));
+    	Stick(next(player)).
+
+    Explosion(player:Player) = 
+        place_at(explosion, anecdotfunScene, x_coord_explosion(player), y_coord_explosion(player));
+        show(explosion, anecdotfunScene).
+
+    InitTokens = tell(tp1); tell(tp2); tell(tp3); tell(tp4); tell(tp5); tell(tp6); tell(tp7); tell(tp8); tell(tp1_2); tell(tp2_2); tell(tp3_2).
+
+    InitGame(player:Player) = 
+        draw_scene(anecdotfunScene);
+        place_at(stick, anecdotfunScene, x_coord(player), y_coord(player));
+        show(stick, anecdotfunScene);
+        Stick(player).
+
+    StartGame = InitTokens; InitGame(player1); Explosion(player3_2).
+
+    ResetGame = 
+        hide(explosion, anecdotfunScene);
+        hide(stick, anecdotfunScene);
+        move_to(stick, anecdotfunScene, x_coord(player1), y_coord(player1));
+        show(stick, anecdotfunScene).

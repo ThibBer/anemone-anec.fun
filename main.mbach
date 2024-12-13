@@ -1,5 +1,6 @@
-eset Player = {player1, player2, player3, player4, player5, player6, player7, player8, player1_2, player2_2, player3_2}.
-     Tokens = {tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8, tp1_2, tp2_2, tp3_2}.
+eset Player = {player1, player2, player3, player4, player5, player6, player7, player8}.
+     Tokens = {tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8}.
+     Color = { green, red }.
 
 eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     x_coord(player2) = 345.      y_coord(player2) = 78.
@@ -11,31 +12,19 @@ eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     x_coord(player8) = 345.      y_coord(player8) = 556.
     x_coord(player8) = 345.      y_coord(player8) = 556.
 
-    x_coord(player1_2) = 115.    y_coord(player1_2) = 316.
-    x_coord(player2_2) = 345.    y_coord(player2_2) = 78.
-    x_coord(player3_2) = 590.    y_coord(player3_2) = 78.
-
-
     x_coord_explosion(player1) = 55.      y_coord_explosion(player1) = 290.
-    x_coord_explosion(player2) = 290.     y_coord_explosion(player2) = 45.
-    x_coord_explosion(player3) = 536.     y_coord_explosion(player3) = 45.
-    x_coord_explosion(player4) = 787.     y_coord_explosion(player4) = 45.
+    x_coord_explosion(player2) = 290.     y_coord_explosion(player2) = 39.
+    x_coord_explosion(player3) = 536.     y_coord_explosion(player3) = 39.
+    x_coord_explosion(player4) = 787.     y_coord_explosion(player4) = 39.
     x_coord_explosion(player5) = 1018.    y_coord_explosion(player5) = 290.
     x_coord_explosion(player6) = 787.     y_coord_explosion(player6) = 534.
     x_coord_explosion(player7) = 536.     y_coord_explosion(player7) = 534.
     x_coord_explosion(player8) = 295.     y_coord_explosion(player8) = 534.
 
-    x_coord_explosion(player1_2) = 55.    y_coord_explosion(player1_2) = 290.
-    x_coord_explosion(player2_2) = 290.   y_coord_explosion(player2_2) = 45.
-    x_coord_explosion(player3_2) = 536.   y_coord_explosion(player3_2) = 45.
-
     token(player1) = tp1.         token(player2) = tp2.
     token(player3) = tp3.         token(player4) = tp4.
     token(player5) = tp5.         token(player6) = tp6.
     token(player7) = tp7.         token(player8) = tp8.
-
-    token(player1_2) = tp1_2.     token(player2_2) = tp2_2.
-    token(player3_2) = tp3_2.
     
     next(player1) = player2.
     next(player2) = player3.
@@ -44,10 +33,34 @@ eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     next(player5) = player6.
     next(player6) = player7.
     next(player7) = player8.
-    next(player8) = player1_2.
-    next(player1_2) = player2_2.
-    next(player2_2) = player3_2.
+    next(player8) = player1.
 
+    x_chair(player1) = 57.       y_chair(player1) = 284.
+    x_chair(player2) = 290.      y_chair(player2) = 45.
+    x_chair(player3) = 536.      y_chair(player3) = 45.
+    x_chair(player4) = 787.      y_chair(player4) = 45.
+    x_chair(player5) = 1031.     y_chair(player5) = 290.
+    x_chair(player6) = 782.      y_chair(player6) = 540.
+    x_chair(player7) = 536.      y_chair(player7) = 540.
+    x_chair(player8) = 290.      y_chair(player8) = 540.
+
+    x_speaker(player1) = 92.     y_speaker(player1) = 430.
+    x_speaker(player2) = 431.    y_speaker(player2) = 91.
+    x_speaker(player3) = 677.    y_speaker(player3) = 91.
+    x_speaker(player4) = 923.    y_speaker(player4) = 91.
+    x_speaker(player5) = 1055.   y_speaker(player5) = 430.
+    x_speaker(player6) = 923.    y_speaker(player6) = 564.
+    x_speaker(player7) = 677.    y_speaker(player7) = 91.
+    x_speaker(player8) = 431.    y_speaker(player8) = 564.
+
+    x_thumb(player1) = 6.        y_thumb(player1) = 328.
+    x_thumb(player2) = 335.      y_thumb(player2) = 160.
+    x_thumb(player3) = 580.      y_thumb(player3) = 160.
+    x_thumb(player4) = 830.      y_thumb(player4) = 160.
+    x_thumb(player5) = 1151.     y_thumb(player5) = 329.
+    x_thumb(player6) = 830.      y_thumb(player6) = 495.
+    x_thumb(player7) = 580.      y_thumb(player7) = 495.
+    x_thumb(player8) = 335.      y_thumb(player8) = 495.
 
 scene anecdotfunScene = {
     size = (1200,700).
@@ -56,6 +69,125 @@ scene anecdotfunScene = {
     background = loadImage(images/background.png).
     stickImage =  loadImage(images/stick.png).
     explosionImage =  loadImage(images/explosion.png).
+    chairImageTop =  loadImage(images/chair_top.png).
+    chairImageBottom =  loadImage(images/chair_bottom.png).
+    chairImageRight =  loadImage(images/chair_right.png).
+    chairImageLeft =  loadImage(images/chair_left.png).
+    speakerImage =  loadImage(images/speaker.png).
+    thumbGreenImage =  loadImage(images/green_thumb.png).
+    thumbRedImage =  loadImage(images/red_thumb.png).
+
+    widget chair1 = {
+       display = { chairImageRight }
+       init = { wdL = top. }
+    }
+
+    widget chair2 = {
+       display = { chairImageBottom }
+       init = { wdL = top. }
+    }
+
+    widget chair3 = {
+       display = { chairImageBottom }
+       init = { wdL = top. }
+    }
+
+    widget chair4 = {
+       display = { chairImageBottom }
+       init = { wdL = top. }
+    }
+
+    widget chair5 = {
+       display = { chairImageLeft }
+       init = { wdL = top. }
+    }
+
+    widget chair6 = {
+       display = { chairImageTop }
+       init = { wdL = top. }
+    }
+
+    widget chair7 = {
+       display = { chairImageTop }
+       init = { wdL = top. }
+    }
+
+    widget chair8 = {
+       display = { chairImageTop }
+       init = { wdL = top. }
+    }
+
+    widget player1Thumb = {
+       attributes = { player1ThumbColor in Color. }
+       display = {
+            player1ThumbColor = green -> thumbGreenImage.
+            player1ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player1ThumbColor = green.}
+    }
+
+    widget player2Thumb = {
+       attributes = { player2ThumbColor in Color. }
+       display = {
+            player2ThumbColor = green -> thumbGreenImage.
+            player2ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player2ThumbColor = green.}
+    }
+
+    widget player3Thumb = {
+       attributes = { player3ThumbColor in Color. }
+       display = {
+            player3ThumbColor = green -> thumbGreenImage.
+            player3ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player3ThumbColor = green.}
+    }
+
+    widget player4Thumb = {
+       attributes = { player4ThumbColor in Color. }
+       display = {
+            player4ThumbColor = green -> thumbGreenImage.
+            player4ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player4ThumbColor = green.}
+    }
+
+    widget player5Thumb = {
+       attributes = { player5ThumbColor in Color. }
+       display = {
+            player5ThumbColor = green -> thumbGreenImage.
+            player5ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player5ThumbColor = green.}
+    }
+
+    widget player6Thumb = {
+       attributes = { player6ThumbColor in Color. }
+       display = {
+            player6ThumbColor = green -> thumbGreenImage.
+            player6ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player6ThumbColor = green.}
+    }
+
+    widget player7Thumb = {
+       attributes = { player7ThumbColor in Color. }
+       display = {
+            player7ThumbColor = green -> thumbGreenImage.
+            player7ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player7ThumbColor = green.}
+    }
+
+    widget player8Thumb = {
+       attributes = { player8ThumbColor in Color. }
+       display = {
+            player8ThumbColor = green -> thumbGreenImage.
+            player8ThumbColor = red -> thumbRedImage.
+       }
+       init = {wdL = top. player8ThumbColor = green.}
+    }
 
     widget stick = {
        display = {stickImage}
@@ -66,26 +198,121 @@ scene anecdotfunScene = {
        display = {explosionImage}
        init = {wdL = top.}
     }
+
+    widget speaker = {
+       display = {speakerImage}
+       init = {wdL = top.}
+    }
 }.
 
 proc Stick(player:Player) = 
-        get(token(next(player)));
-        move_to(stick, anecdotfunScene, x_coord(next(player)), y_coord(next(player)));
-    	Stick(next(player)).
+        (
+            ask(explodeStick);
+            get(token(player));
+            move_to(stick, anecdotfunScene, x_coord(player), y_coord(player));
+            tell(token(player));
+            Explosion(player);
+            get(explodeStick);
+            Stick(next(player))
+        ) 
+        +
+        (
+            nask(explodeStick);
+            get(token(player));
+            move_to(stick, anecdotfunScene, x_coord(player), y_coord(player));
+            tell(token(player));
+            Stick(next(player))
+        ).
 
     Explosion(player:Player) = 
         place_at(explosion, anecdotfunScene, x_coord_explosion(player), y_coord_explosion(player));
-        show(explosion, anecdotfunScene).
+        show(explosion, anecdotfunScene);
+        show(explosion, anecdotfunScene);
+        hide(explosion, anecdotfunScene);
+        Speaker(player).
 
-    InitTokens = tell(tp1); tell(tp2); tell(tp3); tell(tp4); tell(tp5); tell(tp6); tell(tp7); tell(tp8); tell(tp1_2); tell(tp2_2); tell(tp3_2).
+    Speaker(player:Player) =
+        place_at(speaker, anecdotfunScene, x_speaker(player), y_speaker(player));
+        show(speaker, anecdotfunScene);
+        show(speaker, anecdotfunScene);
+        show(speaker, anecdotfunScene);
+        show(speaker, anecdotfunScene);
+        hide(speaker, anecdotfunScene);
+        ShowThumbs.
+
+    InitTokens = tell(tp1); tell(tp2); tell(tp3); tell(tp4); tell(tp5); tell(tp6); tell(tp7); tell(tp8).
+    
+    InitChairs = 
+        place_at(chair1, anecdotfunScene, x_chair(player1), y_chair(player1));
+        place_at(chair2, anecdotfunScene, x_chair(player2), y_chair(player2));
+        place_at(chair3, anecdotfunScene, x_chair(player3), y_chair(player3));
+        place_at(chair4, anecdotfunScene, x_chair(player4), y_chair(player4));
+        place_at(chair5, anecdotfunScene, x_chair(player5), y_chair(player5));
+        place_at(chair6, anecdotfunScene, x_chair(player6), y_chair(player6));
+        place_at(chair7, anecdotfunScene, x_chair(player7), y_chair(player7));
+        place_at(chair8, anecdotfunScene, x_chair(player8), y_chair(player8));
+        show(chair1, anecdotfunScene);
+        show(chair2, anecdotfunScene);
+        show(chair3, anecdotfunScene);
+        show(chair4, anecdotfunScene);
+        show(chair5, anecdotfunScene);
+        show(chair6, anecdotfunScene);
+        show(chair7, anecdotfunScene);
+        show(chair8, anecdotfunScene).
+
+    InitThumbs = 
+        place_at(player1Thumb, anecdotfunScene, x_thumb(player1), y_thumb(player1));
+        place_at(player2Thumb, anecdotfunScene, x_thumb(player2), y_thumb(player2));
+        place_at(player3Thumb, anecdotfunScene, x_thumb(player3), y_thumb(player3));
+        place_at(player4Thumb, anecdotfunScene, x_thumb(player4), y_thumb(player4));
+        place_at(player5Thumb, anecdotfunScene, x_thumb(player5), y_thumb(player5));
+        place_at(player6Thumb, anecdotfunScene, x_thumb(player6), y_thumb(player6));
+        place_at(player7Thumb, anecdotfunScene, x_thumb(player7), y_thumb(player7));
+        place_at(player8Thumb, anecdotfunScene, x_thumb(player8), y_thumb(player8)).
+
+    ShowThumbs = 
+        (att(player1ThumbColor, player1Thumb, anecdotfunScene, green) + att(player1ThumbColor, player1Thumb, anecdotfunScene, red));
+        show(player1Thumb, anecdotfunScene);
+        (att(player2ThumbColor, player2Thumb, anecdotfunScene, green) + att(player2ThumbColor, player2Thumb, anecdotfunScene, red));
+        show(player2Thumb, anecdotfunScene);
+        (att(player3ThumbColor, player3Thumb, anecdotfunScene, green) + att(player3ThumbColor, player3Thumb, anecdotfunScene, red));
+        show(player3Thumb, anecdotfunScene);
+        (att(player4ThumbColor, player4Thumb, anecdotfunScene, green) + att(player4ThumbColor, player4Thumb, anecdotfunScene, red));
+        show(player4Thumb, anecdotfunScene);
+        (att(player5ThumbColor, player5Thumb, anecdotfunScene, green) + att(player5ThumbColor, player5Thumb, anecdotfunScene, red));
+        show(player5Thumb, anecdotfunScene);
+        (att(player6ThumbColor, player6Thumb, anecdotfunScene, green) + att(player6ThumbColor, player6Thumb, anecdotfunScene, red));
+        show(player6Thumb, anecdotfunScene);
+        (att(player7ThumbColor, player7Thumb, anecdotfunScene, green) + att(player7ThumbColor, player7Thumb, anecdotfunScene, red));
+        show(player7Thumb, anecdotfunScene);
+        (att(player8ThumbColor, player8Thumb, anecdotfunScene, green) + att(player8ThumbColor, player8Thumb, anecdotfunScene, red));
+        show(player8Thumb, anecdotfunScene);
+        show(player8Thumb, anecdotfunScene);
+        show(player8Thumb, anecdotfunScene);
+        show(player8Thumb, anecdotfunScene);
+        ResetThumbs.
+
+    ResetThumbs =
+        hide(player1Thumb, anecdotfunScene);
+        hide(player2Thumb, anecdotfunScene);
+        hide(player3Thumb, anecdotfunScene);
+        hide(player4Thumb, anecdotfunScene);
+        hide(player5Thumb, anecdotfunScene);
+        hide(player6Thumb, anecdotfunScene);
+        hide(player7Thumb, anecdotfunScene);
+        hide(player8Thumb, anecdotfunScene).
 
     InitGame(player:Player) = 
         draw_scene(anecdotfunScene);
+        InitChairs;
+        InitThumbs;
         place_at(stick, anecdotfunScene, x_coord(player), y_coord(player));
         show(stick, anecdotfunScene);
-        Stick(player).
+        Stick(next(player)).
 
-    StartGame = InitTokens; InitGame(player1); Explosion(player3_2).
+    ExplodeStick = tell(explodeStick).
+
+    StartGame = InitTokens; InitGame(player1).
 
     ResetGame = 
         hide(explosion, anecdotfunScene);

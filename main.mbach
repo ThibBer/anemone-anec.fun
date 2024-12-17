@@ -10,7 +10,6 @@ eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     x_coord(player6) = 838.      y_coord(player6) = 556.
     x_coord(player7) = 590.      y_coord(player7) = 556.
     x_coord(player8) = 345.      y_coord(player8) = 556.
-    x_coord(player8) = 345.      y_coord(player8) = 556.
 
     x_coord_explosion(player1) = 55.      y_coord_explosion(player1) = 290.
     x_coord_explosion(player2) = 290.     y_coord_explosion(player2) = 39.
@@ -25,7 +24,7 @@ eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     token(player3) = tp3.         token(player4) = tp4.
     token(player5) = tp5.         token(player6) = tp6.
     token(player7) = tp7.         token(player8) = tp8.
-    
+
     next(player1) = player2.
     next(player2) = player3.
     next(player3) = player4.
@@ -205,7 +204,7 @@ scene anecdotfunScene = {
     }
 }.
 
-proc Stick(player:Player) = 
+proc Stick(player:Player) =
         (
             ask(explodeStick);
             get(token(player));
@@ -214,7 +213,7 @@ proc Stick(player:Player) =
             Explosion(player);
             get(explodeStick);
             Stick(next(player))
-        ) 
+        )
         +
         (
             nask(explodeStick);
@@ -224,7 +223,7 @@ proc Stick(player:Player) =
             Stick(next(player))
         ).
 
-    Explosion(player:Player) = 
+    Explosion(player:Player) =
         place_at(explosion, anecdotfunScene, x_coord_explosion(player), y_coord_explosion(player));
         show(explosion, anecdotfunScene);
         show(explosion, anecdotfunScene);
@@ -241,8 +240,8 @@ proc Stick(player:Player) =
         ShowThumbs.
 
     InitTokens = tell(tp1); tell(tp2); tell(tp3); tell(tp4); tell(tp5); tell(tp6); tell(tp7); tell(tp8).
-    
-    InitChairs = 
+
+    InitChairs =
         place_at(chair1, anecdotfunScene, x_chair(player1), y_chair(player1));
         place_at(chair2, anecdotfunScene, x_chair(player2), y_chair(player2));
         place_at(chair3, anecdotfunScene, x_chair(player3), y_chair(player3));
@@ -260,7 +259,7 @@ proc Stick(player:Player) =
         show(chair7, anecdotfunScene);
         show(chair8, anecdotfunScene).
 
-    InitThumbs = 
+    InitThumbs =
         place_at(player1Thumb, anecdotfunScene, x_thumb(player1), y_thumb(player1));
         place_at(player2Thumb, anecdotfunScene, x_thumb(player2), y_thumb(player2));
         place_at(player3Thumb, anecdotfunScene, x_thumb(player3), y_thumb(player3));
@@ -270,7 +269,7 @@ proc Stick(player:Player) =
         place_at(player7Thumb, anecdotfunScene, x_thumb(player7), y_thumb(player7));
         place_at(player8Thumb, anecdotfunScene, x_thumb(player8), y_thumb(player8)).
 
-    ShowThumbs = 
+    ShowThumbs =
         (att(player1ThumbColor, player1Thumb, anecdotfunScene, green) + att(player1ThumbColor, player1Thumb, anecdotfunScene, red));
         show(player1Thumb, anecdotfunScene);
         (att(player2ThumbColor, player2Thumb, anecdotfunScene, green) + att(player2ThumbColor, player2Thumb, anecdotfunScene, red));
@@ -302,7 +301,7 @@ proc Stick(player:Player) =
         hide(player7Thumb, anecdotfunScene);
         hide(player8Thumb, anecdotfunScene).
 
-    InitGame(player:Player) = 
+    InitGame(player:Player) =
         draw_scene(anecdotfunScene);
         InitChairs;
         InitThumbs;
@@ -314,7 +313,7 @@ proc Stick(player:Player) =
 
     StartGame = InitTokens; InitGame(player1).
 
-    ResetGame = 
+    ResetGame =
         hide(explosion, anecdotfunScene);
         hide(stick, anecdotfunScene);
         move_to(stick, anecdotfunScene, x_coord(player1), y_coord(player1));

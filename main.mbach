@@ -237,7 +237,7 @@ proc Stick(player:Player) =
         show(speaker, anecdotfunScene);
         show(speaker, anecdotfunScene);
         hide(speaker, anecdotfunScene);
-        ShowThumbs.
+        ShowThumbs(player).
 
     InitTokens = tell(tp1); tell(tp2); tell(tp3); tell(tp4); tell(tp5); tell(tp6); tell(tp7); tell(tp8).
 
@@ -269,27 +269,116 @@ proc Stick(player:Player) =
         place_at(player7Thumb, anecdotfunScene, x_thumb(player7), y_thumb(player7));
         place_at(player8Thumb, anecdotfunScene, x_thumb(player8), y_thumb(player8)).
 
-    ShowThumbs =
+    ShowThumbs(s:Player) =
         (att(player1ThumbColor, player1Thumb, anecdotfunScene, green) + att(player1ThumbColor, player1Thumb, anecdotfunScene, red));
-        show(player1Thumb, anecdotfunScene);
         (att(player2ThumbColor, player2Thumb, anecdotfunScene, green) + att(player2ThumbColor, player2Thumb, anecdotfunScene, red));
-        show(player2Thumb, anecdotfunScene);
         (att(player3ThumbColor, player3Thumb, anecdotfunScene, green) + att(player3ThumbColor, player3Thumb, anecdotfunScene, red));
-        show(player3Thumb, anecdotfunScene);
         (att(player4ThumbColor, player4Thumb, anecdotfunScene, green) + att(player4ThumbColor, player4Thumb, anecdotfunScene, red));
-        show(player4Thumb, anecdotfunScene);
         (att(player5ThumbColor, player5Thumb, anecdotfunScene, green) + att(player5ThumbColor, player5Thumb, anecdotfunScene, red));
-        show(player5Thumb, anecdotfunScene);
         (att(player6ThumbColor, player6Thumb, anecdotfunScene, green) + att(player6ThumbColor, player6Thumb, anecdotfunScene, red));
-        show(player6Thumb, anecdotfunScene);
         (att(player7ThumbColor, player7Thumb, anecdotfunScene, green) + att(player7ThumbColor, player7Thumb, anecdotfunScene, red));
-        show(player7Thumb, anecdotfunScene);
         (att(player8ThumbColor, player8Thumb, anecdotfunScene, green) + att(player8ThumbColor, player8Thumb, anecdotfunScene, red));
+        (( ( s = player1) -> (
+         show(player2Thumb, anecdotfunScene);
+         show(player3Thumb, anecdotfunScene);
+         show(player4Thumb, anecdotfunScene);
+         show(player5Thumb, anecdotfunScene);
+         show(player6Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene)
+
+      )) +
+      ( ( s = player2) -> (
+        show(player1Thumb, anecdotfunScene);
+        show(player3Thumb, anecdotfunScene);
+        show(player4Thumb, anecdotfunScene);
+        show(player5Thumb, anecdotfunScene);
+        show(player6Thumb, anecdotfunScene);
+        show(player7Thumb, anecdotfunScene);
         show(player8Thumb, anecdotfunScene);
         show(player8Thumb, anecdotfunScene);
         show(player8Thumb, anecdotfunScene);
-        show(player8Thumb, anecdotfunScene);
+        show(player8Thumb, anecdotfunScene)
+
+      )) +
+      (  ( s = player3) -> (
+        show(player1Thumb, anecdotfunScene);
+         show(player2Thumb, anecdotfunScene);
+         show(player4Thumb, anecdotfunScene);
+         show(player5Thumb, anecdotfunScene);
+         show(player6Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene)
+      )) +
+      ( ( s = player4) -> (
+        show(player1Thumb, anecdotfunScene);
+         show(player2Thumb, anecdotfunScene);
+         show(player3Thumb, anecdotfunScene);
+         show(player5Thumb, anecdotfunScene);
+         show(player6Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene)
+      )) +
+      ( ( s = player5) -> (
+        show(player1Thumb, anecdotfunScene);
+         show(player2Thumb, anecdotfunScene);
+         show(player3Thumb, anecdotfunScene);
+         show(player4Thumb, anecdotfunScene);
+         show(player6Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene)
+      )) +
+      ( ( s = player6) -> (
+        show(player1Thumb, anecdotfunScene);
+         show(player2Thumb, anecdotfunScene);
+         show(player3Thumb, anecdotfunScene);
+         show(player4Thumb, anecdotfunScene);
+         show(player5Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene)
+      )) +
+      ( ( s = player7) -> (
+        show(player1Thumb, anecdotfunScene);
+         show(player2Thumb, anecdotfunScene);
+         show(player3Thumb, anecdotfunScene);
+         show(player4Thumb, anecdotfunScene);
+         show(player5Thumb, anecdotfunScene);
+         show(player6Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene);
+         show(player8Thumb, anecdotfunScene)
+      )) +
+      ( ( s = player8) -> (
+        show(player1Thumb, anecdotfunScene);
+         show(player2Thumb, anecdotfunScene);
+         show(player3Thumb, anecdotfunScene);
+         show(player4Thumb, anecdotfunScene);
+         show(player5Thumb, anecdotfunScene);
+         show(player6Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene);
+         show(player7Thumb, anecdotfunScene)
+
+      )));
         ResetThumbs.
+
 
     ResetThumbs =
         hide(player1Thumb, anecdotfunScene);

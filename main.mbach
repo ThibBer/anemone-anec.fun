@@ -1,5 +1,4 @@
 eset Player = {player1, player2, player3, player4, player5, player6, player7, player8}.
-     Tokens = {tp1, tp2, tp3, tp4, tp5, tp6, tp7, tp8}.
      Color = { green, red }.
 
 eqn x_coord(player1) = 115.      y_coord(player1) = 316.
@@ -19,11 +18,6 @@ eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     x_coord_explosion(player6) = 787.     y_coord_explosion(player6) = 534.
     x_coord_explosion(player7) = 536.     y_coord_explosion(player7) = 534.
     x_coord_explosion(player8) = 295.     y_coord_explosion(player8) = 534.
-
-    token(player1) = tp1.         token(player2) = tp2.
-    token(player3) = tp3.         token(player4) = tp4.
-    token(player5) = tp5.         token(player6) = tp6.
-    token(player7) = tp7.         token(player8) = tp8.
 
     next(player1) = player2.
     next(player2) = player3.
@@ -207,9 +201,7 @@ scene anecdotfunScene = {
 proc Stick(player:Player) =
         (
             ask(explodeStick);
-            get(token(player));
             move_to(stick, anecdotfunScene, x_coord(player), y_coord(player));
-            tell(token(player));
             Explosion(player);
             get(explodeStick);
             Stick(next(player))
@@ -217,9 +209,7 @@ proc Stick(player:Player) =
         +
         (
             nask(explodeStick);
-            get(token(player));
             move_to(stick, anecdotfunScene, x_coord(player), y_coord(player));
-            tell(token(player));
             Stick(next(player))
         ).
 
@@ -238,8 +228,6 @@ proc Stick(player:Player) =
         show(speaker, anecdotfunScene);
         hide(speaker, anecdotfunScene);
         ShowThumbs(player).
-
-    InitTokens = tell(tp1); tell(tp2); tell(tp3); tell(tp4); tell(tp5); tell(tp6); tell(tp7); tell(tp8).
 
     InitChairs =
         place_at(chair1, anecdotfunScene, x_chair(player1), y_chair(player1));
@@ -400,7 +388,7 @@ proc Stick(player:Player) =
 
     ExplodeStick = tell(explodeStick).
 
-    StartGame = InitTokens; InitGame(player1).
+    StartGame = InitGame(player1).
 
     ResetGame =
         hide(explosion, anecdotfunScene);

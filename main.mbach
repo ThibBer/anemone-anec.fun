@@ -69,6 +69,10 @@ scene anecdotfunScene = {
     speakerImage =  loadImage(images/speaker.png).
     thumbGreenImage =  loadImage(images/green_thumb.png).
     thumbRedImage =  loadImage(images/red_thumb.png).
+    boxImage =  loadImage(images/box.png).
+    boxStartImage = loadImage(images/box_start.png).
+    boxExplodeImage = loadImage(images/box_explode.png).
+    boxExplodeOffImage = loadImage(images/box_explode_off.png).
 
     widget chair1 = {
        display = { chairImageRight }
@@ -196,11 +200,32 @@ scene anecdotfunScene = {
        display = {speakerImage}
        init = {wdL = top.}
     }
+
+    widget box = {
+       display = {boxImage}
+       init = {wdL = top.}
+    }
+
+    widget boxStart = {
+       display = {boxStartImage}
+       init = {wdL = top.}
+    }
+
+    widget boxExplode = {
+       display = {boxExplodeImage}
+       init = {wdL = top.}
+    }
+
+    widget boxExplodeOff = {
+       display = {boxExplodeOffImage}
+       init = {wdL = top.}
+    }
 }.
 
 proc Stick(player:Player) =
         (
             ask(explodeStick);
+            BoxReceivedExplosionMessage;
             move_to(stick, anecdotfunScene, x_coord(player), y_coord(player));
             Explosion(player);
             get(explodeStick);
@@ -212,6 +237,28 @@ proc Stick(player:Player) =
             move_to(stick, anecdotfunScene, x_coord(player), y_coord(player));
             Stick(next(player))
         ).
+
+    BoxReceivedExplosionMessage =
+      show(boxExplode, anecdotfunScene);
+      show(boxExplodeOff, anecdotfunScene);
+      hide(boxExplode, anecdotfunScene);
+      show(boxExplode, anecdotfunScene);
+      hide(boxExplodeOff, anecdotfunScene);
+      show(boxExplodeOff, anecdotfunScene);
+      hide(boxExplode, anecdotfunScene);
+      show(boxExplode, anecdotfunScene);
+      hide(boxExplodeOff, anecdotfunScene);
+      show(boxExplodeOff, anecdotfunScene);
+      hide(boxExplode, anecdotfunScene);
+      show(boxExplode, anecdotfunScene);
+      hide(boxExplodeOff, anecdotfunScene);
+      show(boxExplodeOff, anecdotfunScene);
+      hide(boxExplode, anecdotfunScene);
+      show(boxExplode, anecdotfunScene);
+      hide(boxExplodeOff, anecdotfunScene);
+      show(boxExplodeOff, anecdotfunScene);
+      hide(boxExplode, anecdotfunScene);
+      hide(boxExplode, anecdotfunScene).
 
     Explosion(player:Player) =
         place_at(explosion, anecdotfunScene, x_coord_explosion(player), y_coord_explosion(player));
@@ -378,17 +425,23 @@ proc Stick(player:Player) =
         hide(player7Thumb, anecdotfunScene);
         hide(player8Thumb, anecdotfunScene).
 
-    InitGame(player:Player) =
+    InitGame(player: Player) =
         draw_scene(anecdotfunScene);
         InitChairs;
         InitThumbs;
         place_at(stick, anecdotfunScene, x_coord(player), y_coord(player));
         show(stick, anecdotfunScene);
-        Stick(next(player)).
+        show(box, anecdotfunScene).
+
+    StartGame(player: Player) =
+         show(boxStart, anecdotfunScene);
+         Stick(next(player1)).
+
+    Start = StartGame(player1).
 
     ExplodeStick = tell(explodeStick).
 
-    StartGame = InitGame(player1).
+    Init = InitGame(player1).
 
     ResetGame =
         hide(explosion, anecdotfunScene);

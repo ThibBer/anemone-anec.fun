@@ -43,7 +43,7 @@ eqn x_coord(player1) = 115.      y_coord(player1) = 316.
     x_speaker(player4) = 923.    y_speaker(player4) = 91.
     x_speaker(player5) = 1055.   y_speaker(player5) = 430.
     x_speaker(player6) = 923.    y_speaker(player6) = 564.
-    x_speaker(player7) = 677.    y_speaker(player7) = 91.
+    x_speaker(player7) = 677.    y_speaker(player7) = 564.
     x_speaker(player8) = 431.    y_speaker(player8) = 564.
 
     x_thumb(player1) = 6.        y_thumb(player1) = 328.

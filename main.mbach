@@ -435,7 +435,7 @@ proc Stick(player:Player) =
 
     StartGame(player: Player) =
          show(boxStart, anecdotfunScene);
-         Stick(next(player1)).
+         Stick(next(player)).
 
     Start = StartGame(player1).
 
